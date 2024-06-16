@@ -1,6 +1,0 @@
-POST http://localhost:8000/api/reservation
-Content-Type: application/json
-
-{
-    "name": "test"
-}
