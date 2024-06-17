@@ -34,4 +34,13 @@ class ReservationController extends Controller
 
         return Reservation::create($validated);
     }
+
+    public function show(string $id)
+    {
+        sleep(1);
+        $reservation = Reservation::find($id);
+        return [
+            "confirmation" => $reservation ? "true" : "false"
+        ];
+    }
 }
