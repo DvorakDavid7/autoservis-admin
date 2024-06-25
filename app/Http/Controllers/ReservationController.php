@@ -29,7 +29,8 @@ class ReservationController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'date' => 'required',
-            'service' => 'required'
+            'note' => 'nullable',
+            'service' => 'required',
         ]);
 
         return Reservation::create($validated);

@@ -21,8 +21,9 @@ class ReservationFactory extends Factory
             'surname' => fake()->lastName(),
             'email' => fake()->email(),
             'phone' => fake()->phoneNumber(),
-            'date' => fake()->dateTime(),
-            'service' => fake()->name()
+            'date' => fake()->date(),
+            'service' => fake()->domainName(),
+            'note' => fake()->text(),
         ];
     }
 }
