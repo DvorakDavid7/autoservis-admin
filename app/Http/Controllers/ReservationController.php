@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ReservationCreated;
+use App\Mail\ReservationDetail;
 use App\Models\Reservation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -50,8 +51,9 @@ class ReservationController extends Controller
         }
 
         if (!$reservation->notified) {
-            Mail::to('dvorakdavid7@gmail.com')->send(new ReservationCreated($reservation));
-            Mail::to('data@advantup.cz')->send(new ReservationCreated($reservation));
+            Mail::to($reservation->email)->send(new ReservationCreated($reservation));
+            Mail::to('dvorakdavid7@gmail.com')->send(new ReservationDetail($reservation));
+            Mail::to('data@advantup.cz')->send(new ReservationDetail($reservation));
             $reservation->update(['notified' => true]);
         }
 
