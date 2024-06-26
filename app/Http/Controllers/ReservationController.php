@@ -51,6 +51,7 @@ class ReservationController extends Controller
 
         if (!$reservation->notified) {
             Mail::to('dvorakdavid7@gmail.com')->send(new ReservationCreated($reservation));
+            Mail::to('data@advantup.cz')->send(new ReservationCreated($reservation));
             $reservation->update(['notified' => true]);
         }
 
