@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("surname", length: 256);
             $table->string("email", length: 256);
             $table->string("phone", length: 256);
-            $table->date("date");
+            $table->string("date");
             $table->string("service");
             $table->string("note", length: 1024)->nullable();
             $table->boolean("notified")->default(false);
