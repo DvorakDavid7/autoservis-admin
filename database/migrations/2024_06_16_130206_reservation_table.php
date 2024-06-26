@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date("date");
             $table->string("service");
             $table->string("note", length: 1024)->nullable();
+            $table->boolean("notified")->default(false);
             $table->timestamps();
         });
     }

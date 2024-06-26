@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReservationCreated;
 use App\Models\Reservation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class ReservationController extends Controller
@@ -39,10 +41,21 @@ class ReservationController extends Controller
 
     public function show(string $id): JsonResponse
     {
-        sleep(1);
         $reservation = Reservation::find($id);
+
+        if ($reservation == null) {
+            return response()->json([
+                'confirmation' => 'false'
+            ]);
+        }
+
+        if (!$reservation->notified) {
+            Mail::to('dvorakdavid7@gmail.com')->send(new ReservationCreated($reservation));
+            $reservation->update(['notified' => true]);
+        }
+
         return response()->json([
-            "confirmation" => $reservation ? "true" : "false"
+            'confirmation' => 'true'
         ]);
     }
 

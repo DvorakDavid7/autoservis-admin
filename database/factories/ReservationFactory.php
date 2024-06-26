@@ -29,6 +29,7 @@ class ReservationFactory extends Factory
             'date' => $formattedTime,
             'service' => fake()->domainName(),
             'note' => fake()->text(),
+            'notified' => false,
         ];
     }
 }
